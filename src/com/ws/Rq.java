@@ -24,6 +24,12 @@ public class Rq {
 
 		for (String paramStr : paramBits) {
 			String[] paramStrBits = paramStr.split("=", 2);
+			
+			//삭제?id= 이렇게 값(value)없을경우 대비.
+			if (paramBits.length == 1) {
+				continue;
+			}
+			
 			String key = paramStrBits[0];
 			String value = paramStrBits[1];
 			params.put(key, value);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ws.Container;
+import com.ws.Rq;
 import com.ws.wiseSaying.entity.WiseSaying;
 
 public class WiseSayingController {
@@ -50,19 +51,19 @@ public class WiseSayingController {
 
 	}
 
-	public void remove() {
-		//내가 스스로 한것, 마지막 번호삭제시 오류나옴
-		//Map을 안쓰고 번호로 해결하려고 했음.
-//		if (wiseSayings.size() == 0) {
-//			System.out.println("삭제할 명언이 없음");
-//		} else {
-//			System.out.print("삭제할 명언의 번호를 입력하세요: ");
-//			String num = Container.getScanner().nextLine().trim();
-//			int i_num = Integer.parseInt(num);
-//			wiseSayings.remove(i_num-1);
-//			lastId -= 1;
-//			System.out.printf("%d명언이 삭제되었습니다.\n", i_num);
-//		}
+	public void remove(Rq rq) {
+		int id = -1; //에러를 처리하기위해 미리 설정.
+
+		try {
+			id = Integer.parseInt(rq.getParam("id"));
+			System.out.println(id);
+		} catch (NumberFormatException e) {
+			System.out.printf("id(정수)를 제대로 입력해주세요\n", id);
+			return;
+		}
+
+		System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
+
 	}
 
 }
