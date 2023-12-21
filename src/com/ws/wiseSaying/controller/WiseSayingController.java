@@ -2,20 +2,19 @@ package com.ws.wiseSaying.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
+import com.ws.Container;
 import com.ws.wiseSaying.entity.WiseSaying;
 
 public class WiseSayingController {
 	
-	private Scanner sc;
+	
 	private int lastId;
 	private List<WiseSaying> wiseSayings;
 	
 	//생성자
-	public WiseSayingController(Scanner sc) {
+	public WiseSayingController() {
 		
-		this.sc = sc;
 		lastId = 0;
 		wiseSayings = new ArrayList<>();
 	}
@@ -25,9 +24,9 @@ public class WiseSayingController {
 	public void write() {
 		int id = lastId + 1;
 		System.out.print("명언 : ");
-		String content = sc.nextLine().trim();
+		String content = Container.getScanner().nextLine().trim();
 		System.out.print("작가 : ");
-		String author = sc.nextLine().trim();
+		String author = Container.getScanner().nextLine().trim();
 
 		WiseSaying wiseSaying = new WiseSaying(id, content, author);
 		wiseSayings.add(wiseSaying);
