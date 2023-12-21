@@ -52,18 +52,36 @@ public class WiseSayingController {
 	}
 
 	public void remove(Rq rq) {
-		int id = -1; //에러를 처리하기위해 미리 설정.
+		int id = rq.getIntParam("id", -1);
 
-		try {
-			id = Integer.parseInt(rq.getParam("id"));
-			System.out.println(id);
-		} catch (NumberFormatException e) {
-			System.out.printf("id(정수)를 제대로 입력해주세요\n", id);
+		if (id == -1) {
+			System.out.println("id(정수)를 제대로 입력해주세요");
 			return;
 		}
-
+		
+		WiseSaying wiseSaying = findById(id); 
+		
+		//밑에 wiseSayings에 존재하지 않을경우 null이 전달됨.
+		if(wiseSaying == null) {
+			System.out.printf("%d 명언은 존재하지 않습니다.\n", id);
+		}
+		
 		System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
+//		System.out.printf("%d번 명언이 삭제되었습니다.\n", wiseSaying.getId());
+		
+	}
 
+	private WiseSaying findById(int id) {
+		//향상된 for문
+		//wiseSayings 에 있는지 둘러보기.
+		for (WiseSaying wiseSaying : wiseSayings) {
+			if(wiseSaying.getId()==id) {
+				return wiseSaying;
+			}
+		}
+		//없을시 null을 remove의 wiseSaying로 전달 바로 밑 if문의 null과
+		//같다고 해서 출력문이 출력된다.
+		return null;
 	}
 
 }

@@ -5,7 +5,8 @@ import com.ws.wiseSaying.controller.WiseSayingController;
 
 public class App {
 	byte system_status = 1;
-	//while문 빠져나오기 위함.
+
+	// while문 빠져나오기 위함.
 	public App() {
 
 	}
