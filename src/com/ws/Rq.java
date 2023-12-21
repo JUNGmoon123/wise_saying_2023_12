@@ -14,7 +14,12 @@ public class Rq {
 		actionCode = cmdBits[0];
 
 		params = new HashMap<>();
-
+		
+		//잘못된 입력시 cmdBits는 쪼개지지않으니 1이면 리턴해준다.
+		if (cmdBits.length == 1) {
+			return;
+		}
+		
 		String[] paramBits = cmdBits[1].split("&");
 
 		for (String paramStr : paramBits) {
