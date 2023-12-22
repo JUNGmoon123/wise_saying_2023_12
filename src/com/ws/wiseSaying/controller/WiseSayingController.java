@@ -30,7 +30,8 @@ public class WiseSayingController {
 	public void list() {			//App에서 등록키워드실행시 실행
 		List<WiseSaying> wiseSayings = wiseSayingService.findAll();		//Service로 list정보를 요청하고 Service에서 정보를반환한다.
 											//반환된 데이터들을 ArrayList로 만들어진 배열에 저장하고 wiseSayings리모콘이 가리킨다.
-																	
+										//List타입인 이유는 리포지터리에서 만들어진 리스트를 가져오기 위함. 
+										//int형을 저장하려면 int형에만 해야하는 것과 같다.
 
 		System.out.println("번호  /  작가  /  명언  ");
 		System.out.println("=".repeat(30));
