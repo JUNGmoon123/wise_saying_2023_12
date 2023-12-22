@@ -38,6 +38,9 @@ public class App {
 			case "삭제":
 				wiseSayingController.remove(rq);
 				break;
+			case "수정":
+				wiseSayingController.modify(rq);
+				break;
 			default:
 				System.out.println("존재하지 않는 명령어입니다");
 				break;

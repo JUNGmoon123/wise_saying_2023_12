@@ -8,6 +8,8 @@ public class Rq {
 	private String actionCode;
 	private Map<String, String> params;
 
+	//명령어를 알맞은 정보로 가공, app쪽에선 필요한것만 요청
+	//Rq는 요청에 대한 처리
 	public Rq(String cmd) {
 		String[] cmdBits = cmd.split("\\?", 2);
 
@@ -16,7 +18,7 @@ public class Rq {
 		params = new HashMap<>();
 
 		// 잘못된 입력시 cmdBits는 쪼개지지않으니 1이면 리턴해준다.
-		// 여기서 return으로 Rq는 값이 없고 Rq의 actionCode에 삭제가 남아있다.
+		// 여기서 return으로 Rq는 값이 없고 Rq의 actionCode에 '삭제'가 남아있다.
 		if (cmdBits.length == 1) {
 			return;
 		}
@@ -43,12 +45,14 @@ public class Rq {
 
 	public String getParam(String name) {
 		return params.get(name); // Map인 params의 get은 ()안에 키값을 받으면
-									// value값을 준다.
+								// name(key)의value값을 준다.
 	}
 
 	public int getIntParam(String name, int defaultValue) {
 		try {
 			return Integer.parseInt(getParam(name));
+			//이부분 다시볼것.
+			//name으로 들어온건(value) String타입임.
 		} catch (NumberFormatException e) {
 
 		}
