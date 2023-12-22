@@ -1,52 +1,38 @@
 package com.ws.wiseSaying.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.ws.wiseSaying.entity.WiseSaying;
+import com.ws.wiseSaying.repository.WiseSayingRepository;
 
 public class WiseSayingService {
-	private int lastWiseSayingId;
-	private List<WiseSaying> wiseSayings;
+
+	private WiseSayingRepository wiseSayingRepository;
 
 	public WiseSayingService() {
 
-		lastWiseSayingId = 0;
-		wiseSayings = new ArrayList<>();
+		wiseSayingRepository = new WiseSayingRepository();
 	}
 
 	public List<WiseSaying> findAll() {
-		return wiseSayings;
-	}
-
-	public WiseSaying findById(int id) {
-		for (WiseSaying wiseSaying : wiseSayings) {
-			if (wiseSaying.getId() == id) {
-				return wiseSaying;
-			}
-		}
-
-		return null;
+		return wiseSayingRepository.findAll();
 	}
 
 	public int write(String content, String author) {
-		int id = lastWiseSayingId + 1;
 
-		WiseSaying wiseSaying = new WiseSaying(id, content, author);
-		wiseSayings.add(wiseSaying);
+		return wiseSayingRepository.write(content, author);
+	}
 
-		lastWiseSayingId = id; // 방금 전에 새 명언이 생겼으니, lastWiseSayingId의 값을 갱신
-
-		return id;
+	public WiseSaying findById(int id) {
+		return wiseSayingRepository.findById(id);
 	}
 
 	public void remove(WiseSaying wiseSaying) {
-		wiseSayings.remove(wiseSaying);
+		wiseSayingRepository.remove(wiseSaying);
 	}
 
 	public void modify(WiseSaying wiseSaying, String content, String author) {
-		wiseSaying.setContent(content);
-		wiseSaying.setAuthor(author);
+		wiseSayingRepository.modify(wiseSaying, content, author);
 
 	}
 
