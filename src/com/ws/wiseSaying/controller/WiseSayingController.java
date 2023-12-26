@@ -12,7 +12,8 @@ public class WiseSayingController {
 	private WiseSayingService wiseSayingService;	// ?? 외부차단??, 정보변경 금지??
 
 	public WiseSayingController() {
-		wiseSayingService = new WiseSayingService();	// 생성자, APP에서 Controller실행시 자동으로 실행되어 Service의 객체 생성, 접근가능하게됨.
+		//wiseSayingService = new WiseSayingService();	// 생성자, APP에서 Controller실행시 자동으로 실행되어 Service의 객체 생성, 접근가능하게됨.
+		wiseSayingService = Container.wiseSayingService;
 	}
 
 	public void write() {				//App에서 등록키워드실행시 실행
